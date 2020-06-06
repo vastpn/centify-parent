@@ -5,7 +5,12 @@
 
     <groupId>com.centify.boot</groupId>
     <artifactId>spring-boot-centify-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
+    <modules>
+        <module>centify-cloud-netty</module>
+        <module>centify-cloud</module>
+        <module>centify-cloud-alibaba</module>
+    </modules>
     <packaging>pom</packaging>
 
     <name>spring-boot-centify-parent</name>
