@@ -8,8 +8,32 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
 
     <artifactId>centify-cloud-netty</artifactId>
 
+    <properties>
+        <spring-cloud-dependencies.version>Greenwich.SR4</spring-cloud-dependencies.version>
+        <netty-all.version>4.1.50.Final</netty-all.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--SpringCloud 版本 基础应用框架-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--Netty Http 基础应用框架-->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty-all.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
