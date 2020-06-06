@@ -1,50 +1,357 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <groupId>com.centify.boot</groupId>
+    <artifactId>spring-boot-centify-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+    <name>spring-boot-centify-parent</name>
+    <description>spring-boot-centify-parent</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+    <!--继承 SpringBoot-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.10.RELEASE</version>
+        <relativePath/>
+    </parent>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-	</properties>
+    <properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+        <java.version>1.8</java.version>
+        <resource.delimiter>@</resource.delimiter>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <!--contiperf 基准并发压力测试-->
+        <org.databene.contiperf.version>2.1.0</org.databene.contiperf.version>
+        <!--JMH Microbenchmark 基准并发压力测试-->
+        <org.openjdk.jmh.jmh-core.version>1.21</org.openjdk.jmh.jmh-core.version>
+        <fastjson.version>1.2.70</fastjson.version>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>${project.reporting.outputEncoding}</project.build.sourceEncoding>
 
 
+        <!--SpringCloud Config 各环境配置信息，(用于Maven Build时替换bootstrap.yml application.yml)-->
+        <!--dev 开发环境 (开发人员：本机开发+接口对接,完成单元白盒测试)-->
+        <spring.cloud.config.profile.dev>dev</spring.cloud.config.profile.dev>
+        <spring.cloud.config.uri.dev>uri</spring.cloud.config.uri.dev>
+
+        <!--sit 集成测试环境 (开发人员+测试团队：集成+回归测试，完成多系统白盒、黑盒测试、回归测试)-->
+        <spring.cloud.config.profile.sit>sit</spring.cloud.config.profile.sit>
+        <spring.cloud.config.uri.sit>uri</spring.cloud.config.uri.sit>
+
+        <!--uat 验收测试环境 (测试团队+运营+甲方客户：验收功能)-->
+        <spring.cloud.config.profile.uat>uat</spring.cloud.config.profile.uat>
+        <spring.cloud.config.uri.uat>uri</spring.cloud.config.uri.uat>
+
+        <!--pre 预发布环境 (即准生产环境：完成功能、性能[Nginx流量拷贝、并发吞吐、、宕机压测]测试)-->
+        <spring.cloud.config.profile.pre>pre</spring.cloud.config.profile.pre>
+        <spring.cloud.config.uri.pre>uri</spring.cloud.config.uri.pre>
+
+        <!--prod 生产环境 (线上稳定版本)-->
+        <spring.cloud.config.profile.prod>prod</spring.cloud.config.profile.prod>
+        <spring.cloud.config.uri.prod>uri</spring.cloud.config.uri.prod>
+
+        <disruptorVersion>3.4.2</disruptorVersion>
+    </properties>
+
+    <!--子类继承依赖组件-->
+    <dependencies>
+        <!--强制移除默认日志组件，替换为log4j2日志组件-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <!--强制增加lombok依赖-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!--Fastjson  1.2.68<= 有autoType 漏洞-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <!--主依赖MockServletContext依赖,scope 不能为test以前域-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <!--JMH Microbenchmark 基准并发压力测试(优选选择，社区持续维护);
+        注意事项：Setting->Build,ExecutionDeployment->Compiler->Annotation Processors里开启Enable annotation processing
+        官网：http://hg.openjdk.java.net/code-tools/jmh/rev/b6f87aa2a687
+        社区：https://blog.csdn.net/qq_21845263/article/details/81911946
+             https://www.xncoding.com/2018/01/07/java/jmh.html
+             http://blog.dyngr.com/blog/2016/10/29/introduction-of-jmh/
+        -->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>${org.openjdk.jmh.jmh-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>${org.openjdk.jmh.jmh-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--JMH Microbenchmark 基准并发压力测试(优选选择，社区持续维护)-->
+
+        <!--contiperf 基准并发压力测试(长期未维护；图形结果，可选择);
+        注意事项：Setting->Build,ExecutionDeployment->Compiler->Annotation Processors里开启Enable annotation processing
+        官网：https://sourceforge.net/p/contiperf/wiki/Home/
+        社区：https://segmentfault.com/a/1190000015722861
+        -->
+        <dependency>
+            <groupId>org.databene</groupId>
+            <artifactId>contiperf</artifactId>
+            <version>${org.databene.contiperf.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--contiperf 基准并发压力测试(长期未维护；图形结果，可选择)-->
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--log4j2 、高并发队列需要-->
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptorVersion}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--编译 环境配置 (用于编译过程中，替换项目运行配置文件中，指定的参数)-->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <!-- 编译命令中没有指定环境时，默认生效dev环境方式编译-->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.cloud.config.uri>${spring.cloud.config.uri.dev}</spring.cloud.config.uri>
+                <spring.cloud.config.profile>${spring.cloud.config.profile.dev}</spring.cloud.config.profile>
+            </properties>
+            <build>
+                <!-- 指定 docker环境相关编译信息-->
+            </build>
+        </profile>
+        <profile>
+            <id>sit</id>
+            <!-- 编译命令中没有指定环境时，默认生效dev环境方式编译-->
+            <properties>
+                <spring.cloud.config.uri>${spring.cloud.config.uri.sit}</spring.cloud.config.uri>
+                <spring.cloud.config.profile>${spring.cloud.config.profile.sit}</spring.cloud.config.profile>
+            </properties>
+            <build>
+                <!-- 指定 docker环境相关编译信息-->
+            </build>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <!-- 编译命令中没有指定环境时，默认生效dev环境方式编译-->
+            <properties>
+                <spring.cloud.config.uri>${spring.cloud.config.uri.uat}</spring.cloud.config.uri>
+                <spring.cloud.config.profile>${spring.cloud.config.profile.uat}</spring.cloud.config.profile>
+            </properties>
+            <build>
+                <!-- 指定 docker环境相关编译信息-->
+            </build>
+        </profile>
+        <profile>
+            <id>pre</id>
+            <!-- 编译命令中没有指定环境时，默认生效dev环境方式编译-->
+            <properties>
+                <spring.cloud.config.uri>${spring.cloud.config.uri.pre}</spring.cloud.config.uri>
+                <spring.cloud.config.profile>${spring.cloud.config.profile.pre}</spring.cloud.config.profile>
+            </properties>
+            <build>
+                <!-- 指定 docker环境相关编译信息-->
+            </build>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <!-- 编译命令中没有指定环境时，默认生效dev环境方式编译-->
+            <properties>
+                <spring.cloud.config.uri>${spring.cloud.config.uri.prod}</spring.cloud.config.uri>
+                <spring.cloud.config.profile>${spring.cloud.config.profile.prod}</spring.cloud.config.profile>
+            </properties>
+            <build>
+                <!-- 指定 docker环境相关编译信息-->
+            </build>
+        </profile>
+    </profiles>
+
+    <!-- 项目编译配置 -->
+    <build>
+        <finalName>${project.name}</finalName>
+        <!--pluginManagement声明的插件，在子项目需中手动引用 -->
+        <pluginManagement>
+            <plugins>
+                <!-- ===========资源文件打包=========== -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <configuration>
+                        <overwrite>true</overwrite>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <!--===========源码打包===========-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <!-- 绑定 verify 阶段-->
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <!-- ===========只打源码包,应用于公共组件打包=========== -->
+                <!-- Run Jar package -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <fork>true</fork>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>build-info</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!--属性过滤替换,yaml 可读取pom.xml 属性-->
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/main/java</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+            <testResource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
+    </build>
+
+    <!-- 私有仓库下载地址 -->
+    <repositories>
+        <repository>
+            <id>GCR</id>
+            <name>gcr</name>
+            <url>http://192.168.1.5:8081/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>GCR</id>
+            <name>gcr</name>
+            <url>http://192.168.1.5:8081/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <!-- 私有仓库上传地址 -->
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://192.168.1.5:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>Snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
