@@ -1,8 +1,12 @@
 ### centify-parent  (POM)
-    centify-cloud-netty
     centify-cloud
+    centify-cloud-netty
     centify-cloud-alibaba
 
+#### POM组件介绍
+    centify-cloud               SpringCloud
+    centify-cloud-netty         SpringCloud + Netty (Servlet Container  HA >12000/s , mid > 8000 /s)
+    centify-cloud-alibaba       SpringCloud-Alibaba
 
 
 ### Java Spring template project
