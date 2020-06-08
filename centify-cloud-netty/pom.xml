@@ -16,8 +16,9 @@
         <spring-cloud-dependencies.version>Greenwich.SR4</spring-cloud-dependencies.version>
         <netty-all.version>4.1.50.Final</netty-all.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <guava.version>24.0-jre</guava.version>
     </properties>
-
+    <!--包依赖管理-->
     <dependencyManagement>
         <dependencies>
             <!--SpringCloud 版本 基础应用框架-->
@@ -42,10 +43,11 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>24.0-jre</version>
+                <version>${guava.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <!--强制依赖-->
     <dependencies>
         <!--引入spring-boot-starter-web基础服务,去掉Tomcat-->
         <dependency>
