@@ -291,7 +291,7 @@
         </resources>
         <testResources>
             <testResource>
-                <directory>src/main/java</directory>
+                <directory>src/test/java</directory>
                 <filtering>true</filtering>
                 <includes>
                     <include>**/*</include>
@@ -301,7 +301,7 @@
                 </excludes>
             </testResource>
             <testResource>
-                <directory>src/main/resources</directory>
+                <directory>src/test/resources</directory>
                 <filtering>true</filtering>
                 <includes>
                     <include>**/*</include>
