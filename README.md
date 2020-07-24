@@ -7,7 +7,11 @@
     centify-cloud               SpringCloud
     centify-cloud-netty         SpringCloud + Netty (Servlet Container  HA >12000/s , mid > 8000 /s)
     centify-cloud-alibaba       SpringCloud-Alibaba
-
+        
+#### 中间件建议版本
+    spring-cloud-alibaba-dependencies 【2.2.1.RELEASE】
+    SpringCloud 【Hoxton】
+    SpringBoot 【2.2.5.RELEASE】
 
 ### Java Spring template project
 

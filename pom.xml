@@ -16,11 +16,11 @@
     <name>spring-boot-centify-parent</name>
     <description>spring-boot-centify-parent</description>
 
-    <!--继承 SpringBoot-->
+    <!--继承 SpringBoot  兼容 【Spring Cloud Alibaba Version 2.2.x，建议版本：2.2.1】 【springcloud Hoxton】 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.10.RELEASE</version>
+        <version>2.2.5.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -38,30 +38,90 @@
 
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>${project.reporting.outputEncoding}</project.build.sourceEncoding>
-
+        <disruptorVersion>3.4.2</disruptorVersion>
 
         <!--SpringCloud Config 各环境配置信息，(用于Maven Build时替换bootstrap.yml application.yml)-->
+        <!--老版本-开发人员-CloudConfig环境配置-->
+        <spring.cloud.config.profile.local>local</spring.cloud.config.profile.local>
+        <spring.cloud.config.uri.local>http://190.168.1.29:13001</spring.cloud.config.uri.local>
+        <profile.local.repositories.id>GCR</profile.local.repositories.id>
+        <profile.local.repositories.name>GCR</profile.local.repositories.name>
+        <profile.local.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.local.repositories.url>
+        <profile.local.pluginRepositories.id>GCR</profile.local.pluginRepositories.id>
+        <profile.local.pluginRepositories.name>GCR</profile.local.pluginRepositories.name>
+        <profile.local.pluginRepositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.local.pluginRepositories.url>
+        <profile.local.distributionManagement.release.id>releases</profile.local.distributionManagement.release.id>
+        <profile.local.distributionManagement.release.name>Nexus Release Repository</profile.local.distributionManagement.release.name>
+        <profile.local.distributionManagement.release.url>http://192.168.1.5:8081/nexus/content/repositories/releases</profile.local.distributionManagement.release.url>
+        <profile.local.distributionManagement.snapshot.id>Snapshots</profile.local.distributionManagement.snapshot.id>
+        <profile.local.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.local.distributionManagement.snapshot.name>
+        <profile.local.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</profile.local.distributionManagement.snapshot.url>
+
+
         <!--dev 开发环境 (开发人员：本机开发+接口对接,完成单元白盒测试)-->
         <spring.cloud.config.profile.dev>dev</spring.cloud.config.profile.dev>
-        <spring.cloud.config.uri.dev>uri</spring.cloud.config.uri.dev>
+        <spring.cloud.config.uri.dev>http://190.168.1.29:13001</spring.cloud.config.uri.dev>
+        <profile.dev.repositories.id>GCR</profile.dev.repositories.id>
+        <profile.dev.repositories.name>GCR</profile.dev.repositories.name>
+        <profile.dev.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.dev.repositories.url>
+        <profile.dev.pluginRepositories.id>GCR</profile.dev.pluginRepositories.id>
+        <profile.dev.pluginRepositories.name>GCR</profile.dev.pluginRepositories.name>
+        <profile.dev.pluginRepositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.dev.pluginRepositories.url>
+        <profile.dev.distributionManagement.release.id>releases</profile.dev.distributionManagement.release.id>
+        <profile.dev.distributionManagement.release.name>Nexus Release Repository</profile.dev.distributionManagement.release.name>
+        <profile.dev.distributionManagement.release.url>http://192.168.1.5:8081/nexus/content/repositories/releases/</profile.dev.distributionManagement.release.url>
+        <profile.dev.distributionManagement.snapshot.id>Snapshots</profile.dev.distributionManagement.snapshot.id>
+        <profile.dev.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.dev.distributionManagement.snapshot.name>
+        <profile.dev.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</profile.dev.distributionManagement.snapshot.url>
 
-        <!--sit 集成测试环境 (开发人员+测试团队：集成+回归测试，完成多系统白盒、黑盒测试、回归测试)-->
-        <spring.cloud.config.profile.sit>sit</spring.cloud.config.profile.sit>
-        <spring.cloud.config.uri.sit>uri</spring.cloud.config.uri.sit>
 
-        <!--uat 验收测试环境 (测试团队+运营+甲方客户：验收功能)-->
-        <spring.cloud.config.profile.uat>uat</spring.cloud.config.profile.uat>
-        <spring.cloud.config.uri.uat>uri</spring.cloud.config.uri.uat>
+        <!--老版本-测试环境-环境配置-->
+        <spring.cloud.config.profile.test>test</spring.cloud.config.profile.test>
+        <spring.cloud.config.uri.test>http://gtp-config-dev-env-service.dev-env.svc.cluster.local:13001</spring.cloud.config.uri.test>
+        <profile.test.repositories.id>GCR</profile.test.repositories.id>
+        <profile.test.repositories.name>GCR</profile.test.repositories.name>
+        <profile.test.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.test.repositories.url>
+        <profile.test.pluginRepositories.id>GCR</profile.test.pluginRepositories.id>
+        <profile.test.pluginRepositories.name>GCR</profile.test.pluginRepositories.name>
+        <profile.test.pluginRepositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.test.pluginRepositories.url>
+        <profile.test.distributionManagement.release.id>releases</profile.test.distributionManagement.release.id>
+        <profile.test.distributionManagement.release.name>Nexus Release Repository</profile.test.distributionManagement.release.name>
+        <profile.test.distributionManagement.release.url>http://192.168.1.5:8081/nexus/content/repositories/releases/</profile.test.distributionManagement.release.url>
+        <profile.test.distributionManagement.snapshot.id>Snapshots</profile.test.distributionManagement.snapshot.id>
+        <profile.test.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.test.distributionManagement.snapshot.name>
+        <profile.test.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</profile.test.distributionManagement.snapshot.url>
 
         <!--pre 预发布环境 (即准生产环境：完成功能、性能[Nginx流量拷贝、并发吞吐、、宕机压测]测试)-->
         <spring.cloud.config.profile.pre>pre</spring.cloud.config.profile.pre>
-        <spring.cloud.config.uri.pre>uri</spring.cloud.config.uri.pre>
+        <spring.cloud.config.uri.pre>http://gtp-config-pre-env-service.pre-env.svc.cluster.local:13001</spring.cloud.config.uri.pre>
+        <profile.pre.repositories.id>GCR</profile.pre.repositories.id>
+        <profile.pre.repositories.name>GCR</profile.pre.repositories.name>
+        <profile.pre.repositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.pre.repositories.url>
+        <profile.pre.pluginRepositories.id>GCR</profile.pre.pluginRepositories.id>
+        <profile.pre.pluginRepositories.name>GCR</profile.pre.pluginRepositories.name>
+        <profile.pre.pluginRepositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.pre.pluginRepositories.url>
+        <profile.pre.distributionManagement.release.id>releases</profile.pre.distributionManagement.release.id>
+        <profile.pre.distributionManagement.release.name>Nexus Release Repository</profile.pre.distributionManagement.release.name>
+        <profile.pre.distributionManagement.release.url>http://172.16.3.10:8081/repository/maven-releases/</profile.pre.distributionManagement.release.url>
+        <profile.pre.distributionManagement.snapshot.id>Snapshots</profile.pre.distributionManagement.snapshot.id>
+        <profile.pre.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.pre.distributionManagement.snapshot.name>
+        <profile.pre.distributionManagement.snapshot.url>http://172.16.3.10:8081/repository/maven-snapshots/</profile.pre.distributionManagement.snapshot.url>
 
         <!--prod 生产环境 (线上稳定版本)-->
         <spring.cloud.config.profile.prod>prod</spring.cloud.config.profile.prod>
-        <spring.cloud.config.uri.prod>uri</spring.cloud.config.uri.prod>
-
-        <disruptorVersion>3.4.2</disruptorVersion>
+        <spring.cloud.config.uri.prod>http://gtp-config-prod-service.prod.svc.cluster.local:13001</spring.cloud.config.uri.prod>
+        <profile.prod.repositories.id>GCR</profile.prod.repositories.id>
+        <profile.prod.repositories.name>GCR</profile.prod.repositories.name>
+        <profile.prod.repositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.prod.repositories.url>
+        <profile.prod.pluginRepositories.id>GCR</profile.prod.pluginRepositories.id>
+        <profile.prod.pluginRepositories.name>GCR</profile.prod.pluginRepositories.name>
+        <profile.prod.pluginRepositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.prod.pluginRepositories.url>
+        <profile.prod.distributionManagement.release.id>releases</profile.prod.distributionManagement.release.id>
+        <profile.prod.distributionManagement.release.name>Nexus Release Repository</profile.prod.distributionManagement.release.name>
+        <profile.prod.distributionManagement.release.url>http://172.16.3.10:8081/repository/maven-releases/</profile.prod.distributionManagement.release.url>
+        <profile.prod.distributionManagement.snapshot.id>Snapshots</profile.prod.distributionManagement.snapshot.id>
+        <profile.prod.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.prod.distributionManagement.snapshot.name>
+        <profile.prod.distributionManagement.snapshot.url>http://172.16.3.10:8081/repository/maven-snapshots/</profile.prod.distributionManagement.snapshot.url>
     </properties>
 
     <!--子类继承依赖组件-->
@@ -136,7 +196,7 @@
         <!--contiperf 基准并发压力测试(长期未维护；图形结果，可选择)-->
 
     </dependencies>
-
+    <!--依赖包管理-->
     <dependencyManagement>
         <dependencies>
             <!--log4j2 、高并发队列需要-->
@@ -163,28 +223,166 @@
             <build>
                 <!-- 指定 docker环境相关编译信息-->
             </build>
+            <repositories>
+                <repository>
+                    <id>${profile.dev.repositories.id}</id>
+                    <name>${profile.dev.repositories.name}</name>
+                    <url>${profile.dev.repositories.url}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>${profile.dev.pluginRepositories.id}</id>
+                    <name>${profile.dev.pluginRepositories.name}</name>
+                    <url>${profile.dev.pluginRepositories.url}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+            <distributionManagement>
+                <repository>
+                    <id>${profile.dev.distributionManagement.release.id}</id>
+                    <name>${profile.dev.distributionManagement.release.name}</name>
+                    <url>${profile.dev.distributionManagement.release.url}</url>
+                </repository>
+                <snapshotRepository>
+                    <id>${profile.dev.distributionManagement.snapshot.id}</id>
+                    <name>${profile.dev.distributionManagement.snapshot.name}</name>
+                    <url>${profile.dev.distributionManagement.snapshot.url}</url>
+                </snapshotRepository>
+            </distributionManagement>
         </profile>
         <profile>
-            <id>sit</id>
+            <id>local</id>
             <!-- 编译命令中没有指定环境时，默认生效dev环境方式编译-->
             <properties>
-                <spring.cloud.config.uri>${spring.cloud.config.uri.sit}</spring.cloud.config.uri>
-                <spring.cloud.config.profile>${spring.cloud.config.profile.sit}</spring.cloud.config.profile>
+                <spring.cloud.config.uri>${spring.cloud.config.uri.local}</spring.cloud.config.uri>
+                <spring.cloud.config.profile>${spring.cloud.config.profile.local}</spring.cloud.config.profile>
             </properties>
             <build>
                 <!-- 指定 docker环境相关编译信息-->
             </build>
+            <repositories>
+                <repository>
+                    <id>${profile.local.repositories.id}</id>
+                    <name>${profile.local.repositories.name}</name>
+                    <url>${profile.local.repositories.url}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>${profile.local.pluginRepositories.id}</id>
+                    <name>${profile.local.pluginRepositories.name}</name>
+                    <url>${profile.local.pluginRepositories.url}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+            <distributionManagement>
+                <repository>
+                    <id>${profile.local.distributionManagement.release.id}</id>
+                    <name>${profile.local.distributionManagement.release.name}</name>
+                    <url>${profile.local.distributionManagement.release.url}</url>
+                </repository>
+                <snapshotRepository>
+                    <id>${profile.local.distributionManagement.snapshot.id}</id>
+                    <name>${profile.local.distributionManagement.snapshot.name}</name>
+                    <url>${profile.local.distributionManagement.snapshot.url}</url>
+                </snapshotRepository>
+            </distributionManagement>
         </profile>
         <profile>
-            <id>uat</id>
+            <id>test</id>
             <!-- 编译命令中没有指定环境时，默认生效dev环境方式编译-->
             <properties>
-                <spring.cloud.config.uri>${spring.cloud.config.uri.uat}</spring.cloud.config.uri>
-                <spring.cloud.config.profile>${spring.cloud.config.profile.uat}</spring.cloud.config.profile>
+                <spring.cloud.config.uri>${spring.cloud.config.uri.test}</spring.cloud.config.uri>
+                <spring.cloud.config.profile>${spring.cloud.config.profile.test}</spring.cloud.config.profile>
             </properties>
             <build>
                 <!-- 指定 docker环境相关编译信息-->
             </build>
+            <repositories>
+                <repository>
+                    <id>${profile.test.repositories.id}</id>
+                    <name>${profile.test.repositories.name}</name>
+                    <url>${profile.test.repositories.url}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>${profile.test.pluginRepositories.id}</id>
+                    <name>${profile.test.pluginRepositories.name}</name>
+                    <url>${profile.test.pluginRepositories.url}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+            <distributionManagement>
+                <repository>
+                    <id>${profile.test.distributionManagement.release.id}</id>
+                    <name>${profile.test.distributionManagement.release.name}</name>
+                    <url>${profile.test.distributionManagement.release.url}</url>
+                </repository>
+                <snapshotRepository>
+                    <id>${profile.test.distributionManagement.snapshot.id}</id>
+                    <name>${profile.test.distributionManagement.snapshot.name}</name>
+                    <url>${profile.test.distributionManagement.snapshot.url}</url>
+                </snapshotRepository>
+            </distributionManagement>
         </profile>
         <profile>
             <id>pre</id>
@@ -196,6 +394,52 @@
             <build>
                 <!-- 指定 docker环境相关编译信息-->
             </build>
+            <repositories>
+                <repository>
+                    <id>${profile.pre.repositories.id}</id>
+                    <name>${profile.pre.repositories.name}</name>
+                    <url>${profile.pre.repositories.url}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>${profile.pre.pluginRepositories.id}</id>
+                    <name>${profile.pre.pluginRepositories.name}</name>
+                    <url>${profile.pre.pluginRepositories.url}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+            <distributionManagement>
+                <repository>
+                    <id>${profile.pre.distributionManagement.release.id}</id>
+                    <name>${profile.pre.distributionManagement.release.name}</name>
+                    <url>${profile.pre.distributionManagement.release.url}</url>
+                </repository>
+                <snapshotRepository>
+                    <id>${profile.pre.distributionManagement.snapshot.id}</id>
+                    <name>${profile.pre.distributionManagement.snapshot.name}</name>
+                    <url>${profile.pre.distributionManagement.snapshot.url}</url>
+                </snapshotRepository>
+            </distributionManagement>
         </profile>
         <profile>
             <id>prod</id>
@@ -207,6 +451,52 @@
             <build>
                 <!-- 指定 docker环境相关编译信息-->
             </build>
+            <repositories>
+                <repository>
+                    <id>${profile.prod.repositories.id}</id>
+                    <name>${profile.prod.repositories.name}</name>
+                    <url>${profile.prod.repositories.url}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>${profile.prod.pluginRepositories.id}</id>
+                    <name>${profile.prod.pluginRepositories.name}</name>
+                    <url>${profile.prod.pluginRepositories.url}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+            <distributionManagement>
+                <repository>
+                    <id>${profile.prod.distributionManagement.release.id}</id>
+                    <name>${profile.prod.distributionManagement.release.name}</name>
+                    <url>${profile.prod.distributionManagement.release.url}</url>
+                </repository>
+                <snapshotRepository>
+                    <id>${profile.prod.distributionManagement.snapshot.id}</id>
+                    <name>${profile.prod.distributionManagement.snapshot.name}</name>
+                    <url>${profile.prod.distributionManagement.snapshot.url}</url>
+                </snapshotRepository>
+            </distributionManagement>
         </profile>
     </profiles>
 
@@ -313,50 +603,4 @@
         </testResources>
     </build>
 
-    <!-- 私有仓库下载地址 -->
-    <repositories>
-        <repository>
-            <id>GCR</id>
-            <name>gcr</name>
-            <url>http://192.168.1.5:8081/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>GCR</id>
-            <name>gcr</name>
-            <url>http://192.168.1.5:8081/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
-    <!-- 私有仓库上传地址 -->
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>Nexus Release Repository</name>
-            <url>http://192.168.1.5:8081/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>Snapshots</id>
-            <name>Nexus Snapshot Repository</name>
-            <url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
