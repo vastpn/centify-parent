@@ -40,6 +40,9 @@
         <project.build.sourceEncoding>${project.reporting.outputEncoding}</project.build.sourceEncoding>
         <disruptorVersion>3.4.2</disruptorVersion>
 
+        <!--  dockerfile-maven-plugin  版本号属性  -->
+        <dockerfile.maven.version>1.4.10</dockerfile.maven.version>
+
         <!--SpringCloud Config 各环境配置信息，(用于Maven Build时替换bootstrap.yml application.yml)-->
         <!--老版本-开发人员-CloudConfig环境配置-->
         <spring.cloud.config.profile.local>local</spring.cloud.config.profile.local>
@@ -56,7 +59,7 @@
         <profile.local.distributionManagement.snapshot.id>Snapshots</profile.local.distributionManagement.snapshot.id>
         <profile.local.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.local.distributionManagement.snapshot.name>
         <profile.local.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</profile.local.distributionManagement.snapshot.url>
-
+        <profile.local.docker.registry.name.prefix>reg.devharbor.com/test</profile.local.docker.registry.name.prefix>
 
         <!--dev 开发环境 (开发人员：本机开发+接口对接,完成单元白盒测试)-->
         <spring.cloud.config.profile.dev>dev</spring.cloud.config.profile.dev>
@@ -73,7 +76,7 @@
         <profile.dev.distributionManagement.snapshot.id>Snapshots</profile.dev.distributionManagement.snapshot.id>
         <profile.dev.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.dev.distributionManagement.snapshot.name>
         <profile.dev.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</profile.dev.distributionManagement.snapshot.url>
-
+        <profile.dev.docker.registry.name.prefix>reg.devharbor.com/test</profile.dev.docker.registry.name.prefix>
 
         <!--老版本-测试环境-环境配置-->
         <spring.cloud.config.profile.test>test</spring.cloud.config.profile.test>
@@ -90,6 +93,8 @@
         <profile.test.distributionManagement.snapshot.id>nexus-snapshot</profile.test.distributionManagement.snapshot.id>
         <profile.test.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.test.distributionManagement.snapshot.name>
         <profile.test.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</profile.test.distributionManagement.snapshot.url>
+        <profile.test.docker.registry.name.prefix>reg.devharbor.com/test</profile.test.docker.registry.name.prefix>
+
 
         <!--pre 预发布环境 (即准生产环境：完成功能、性能[Nginx流量拷贝、并发吞吐、、宕机压测]测试)-->
         <spring.cloud.config.profile.pre>pre</spring.cloud.config.profile.pre>
@@ -106,6 +111,7 @@
         <profile.pre.distributionManagement.snapshot.id>Snapshots</profile.pre.distributionManagement.snapshot.id>
         <profile.pre.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.pre.distributionManagement.snapshot.name>
         <profile.pre.distributionManagement.snapshot.url>http://172.16.3.10:8081/repository/maven-snapshots/</profile.pre.distributionManagement.snapshot.url>
+        <profile.pre.docker.registry.name.prefix>registry.cn-hangzhou.aliyuncs.com/jvv-prod-hub</profile.pre.docker.registry.name.prefix>
 
         <!--prod 生产环境 (线上稳定版本)-->
         <spring.cloud.config.profile.prod>prod</spring.cloud.config.profile.prod>
@@ -122,6 +128,7 @@
         <profile.prod.distributionManagement.snapshot.id>Snapshots</profile.prod.distributionManagement.snapshot.id>
         <profile.prod.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.prod.distributionManagement.snapshot.name>
         <profile.prod.distributionManagement.snapshot.url>http://172.16.3.10:8081/repository/maven-snapshots/</profile.prod.distributionManagement.snapshot.url>
+        <profile.prod.docker.registry.name.prefix>registry.cn-hangzhou.aliyuncs.com/jvv-prod-hub</profile.prod.docker.registry.name.prefix>
     </properties>
 
     <!--子类继承依赖组件-->
@@ -222,6 +229,43 @@
             </properties>
             <build>
                 <!-- 指定 docker环境相关编译信息-->
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>dockerfile-maven-plugin</artifactId>
+                        <version>${dockerfile.maven.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>javax.activation</groupId>
+                                <artifactId>activation</artifactId>
+                                <version>1.1.1</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>default</id>
+                                <goals>
+                                    <!-- 执行 build -->
+                                    <goal>build</goal>
+                                    <!-- 执行 push -->
+                                    <!--<goal>push</goal>-->
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- 镜像名称 -->
+                            <repository>${profile.dev.docker.registry.name.prefix}/${project.name}</repository>
+                            <!-- 镜像版本 -->
+                            <tag>${project.version}</tag>
+                            <!--<username>xxx</username>-->
+                            <!--<password>xxx</password>-->
+                            <buildArgs>
+                                <!-- jar 包名称 -->
+                                <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
             </build>
             <repositories>
                 <repository>
@@ -279,6 +323,43 @@
             </properties>
             <build>
                 <!-- 指定 docker环境相关编译信息-->
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>dockerfile-maven-plugin</artifactId>
+                        <version>${dockerfile.maven.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>javax.activation</groupId>
+                                <artifactId>activation</artifactId>
+                                <version>1.1.1</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>default</id>
+                                <goals>
+                                    <!-- 执行 build -->
+                                    <goal>build</goal>
+                                    <!-- 执行 push -->
+                                    <!--<goal>push</goal>-->
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- 镜像名称 -->
+                            <repository>${profile.local.docker.registry.name.prefix}/${project.name}</repository>
+                            <!-- 镜像版本 -->
+                            <tag>${project.version}</tag>
+                            <!--<username>xxx</username>-->
+                            <!--<password>xxx</password>-->
+                            <buildArgs>
+                                <!-- jar 包名称 -->
+                                <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
             </build>
             <repositories>
                 <repository>
@@ -336,6 +417,43 @@
             </properties>
             <build>
                 <!-- 指定 docker环境相关编译信息-->
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>dockerfile-maven-plugin</artifactId>
+                        <version>${dockerfile.maven.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>javax.activation</groupId>
+                                <artifactId>activation</artifactId>
+                                <version>1.1.1</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>default</id>
+                                <goals>
+                                    <!-- 执行 build -->
+                                    <goal>build</goal>
+                                    <!-- 执行 push -->
+                                    <!--<goal>push</goal>-->
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- 镜像名称 -->
+                            <repository>${profile.test.docker.registry.name.prefix}/${project.name}</repository>
+                            <!-- 镜像版本 -->
+                            <tag>${project.version}</tag>
+                            <!--<username>xxx</username>-->
+                            <!--<password>xxx</password>-->
+                            <buildArgs>
+                                <!-- jar 包名称 -->
+                                <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
             </build>
             <repositories>
                 <repository>
@@ -393,6 +511,43 @@
             </properties>
             <build>
                 <!-- 指定 docker环境相关编译信息-->
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>dockerfile-maven-plugin</artifactId>
+                        <version>${dockerfile.maven.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>javax.activation</groupId>
+                                <artifactId>activation</artifactId>
+                                <version>1.1.1</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>default</id>
+                                <goals>
+                                    <!-- 执行 build -->
+                                    <goal>build</goal>
+                                    <!-- 执行 push -->
+                                    <!--<goal>push</goal>-->
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- 镜像名称 -->
+                            <repository>${profile.pre.docker.registry.name.prefix}/${project.name}</repository>
+                            <!-- 镜像版本 -->
+                            <tag>${project.version}</tag>
+                            <!--<username>xxx</username>-->
+                            <!--<password>xxx</password>-->
+                            <buildArgs>
+                                <!-- jar 包名称 -->
+                                <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
             </build>
             <repositories>
                 <repository>
@@ -450,6 +605,43 @@
             </properties>
             <build>
                 <!-- 指定 docker环境相关编译信息-->
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>dockerfile-maven-plugin</artifactId>
+                        <version>${dockerfile.maven.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>javax.activation</groupId>
+                                <artifactId>activation</artifactId>
+                                <version>1.1.1</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>default</id>
+                                <goals>
+                                    <!-- 执行 build -->
+                                    <goal>build</goal>
+                                    <!-- 执行 push -->
+                                    <!--<goal>push</goal>-->
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- 镜像名称 -->
+                            <repository>${profile.prod.docker.registry.name.prefix}/${project.name}</repository>
+                            <!-- 镜像版本 -->
+                            <tag>${project.version}</tag>
+                            <!--<username>xxx</username>-->
+                            <!--<password>xxx</password>-->
+                            <buildArgs>
+                                <!-- jar 包名称 -->
+                                <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
             </build>
             <repositories>
                 <repository>
