@@ -5,7 +5,7 @@ FROM reg.devharbor.com/test/alpine-java8-utc8-chinese:0.1.1
 WORKDIR /home
 
 # 将项目添加到镜像的根目录, 保持 app.js 这个文件名
-ADD ./target/*.* centify-cloud-netty
+ADD ./README.md centify-cloud-netty
 
 # 添加配置文件
 ENV CONFIG_ENV="dev"
