@@ -84,10 +84,10 @@
         <profile.test.pluginRepositories.id>GCR</profile.test.pluginRepositories.id>
         <profile.test.pluginRepositories.name>GCR</profile.test.pluginRepositories.name>
         <profile.test.pluginRepositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.test.pluginRepositories.url>
-        <profile.test.distributionManagement.release.id>releases</profile.test.distributionManagement.release.id>
+        <profile.test.distributionManagement.release.id>nexus-releases</profile.test.distributionManagement.release.id>
         <profile.test.distributionManagement.release.name>Nexus Release Repository</profile.test.distributionManagement.release.name>
         <profile.test.distributionManagement.release.url>http://192.168.1.5:8081/nexus/content/repositories/releases/</profile.test.distributionManagement.release.url>
-        <profile.test.distributionManagement.snapshot.id>Snapshots</profile.test.distributionManagement.snapshot.id>
+        <profile.test.distributionManagement.snapshot.id>nexus-snapshot</profile.test.distributionManagement.snapshot.id>
         <profile.test.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.test.distributionManagement.snapshot.name>
         <profile.test.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</profile.test.distributionManagement.snapshot.url>
 
