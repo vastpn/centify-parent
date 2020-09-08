@@ -1,11 +1,11 @@
 ##定义镜像的起始内容 基础镜像
-FROM reg.devharbor.com/parent-none-run/alpine-java8-utc8-chinese:0.1.1
+FROM reg.devharbor.com/test/alpine-java8-utc8-chinese:0.1.1
 
 # 工作目录
 WORKDIR /home
 
 # 将项目添加到镜像的根目录, 保持 app.js 这个文件名
-ADD ./target/*.jar app.jar
+ADD ./target/*.* centify-cloud-netty
 
 # 添加配置文件
 ENV CONFIG_ENV="dev"
