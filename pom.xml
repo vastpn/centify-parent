@@ -49,16 +49,23 @@
         <spring.cloud.config.uri.local>http://190.168.1.29:13001</spring.cloud.config.uri.local>
         <profile.local.repositories.id>GCR</profile.local.repositories.id>
         <profile.local.repositories.name>GCR</profile.local.repositories.name>
-        <profile.local.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.local.repositories.url>
+        <profile.local.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/
+        </profile.local.repositories.url>
         <profile.local.pluginRepositories.id>GCR</profile.local.pluginRepositories.id>
         <profile.local.pluginRepositories.name>GCR</profile.local.pluginRepositories.name>
-        <profile.local.pluginRepositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.local.pluginRepositories.url>
+        <profile.local.pluginRepositories.url>http://192.168.1.5:8081/nexus/content/groups/public/
+        </profile.local.pluginRepositories.url>
         <profile.local.distributionManagement.release.id>releases</profile.local.distributionManagement.release.id>
-        <profile.local.distributionManagement.release.name>Nexus Release Repository</profile.local.distributionManagement.release.name>
-        <profile.local.distributionManagement.release.url>http://192.168.1.5:8081/nexus/content/repositories/releases</profile.local.distributionManagement.release.url>
+        <profile.local.distributionManagement.release.name>Nexus Release Repository
+        </profile.local.distributionManagement.release.name>
+        <profile.local.distributionManagement.release.url>http://192.168.1.5:8081/nexus/content/repositories/releases
+        </profile.local.distributionManagement.release.url>
         <profile.local.distributionManagement.snapshot.id>Snapshots</profile.local.distributionManagement.snapshot.id>
-        <profile.local.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.local.distributionManagement.snapshot.name>
-        <profile.local.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</profile.local.distributionManagement.snapshot.url>
+        <profile.local.distributionManagement.snapshot.name>Nexus Snapshot Repository
+        </profile.local.distributionManagement.snapshot.name>
+        <profile.local.distributionManagement.snapshot.url>
+            http://192.168.1.5:8081/nexus/content/repositories/Snapshots/
+        </profile.local.distributionManagement.snapshot.url>
         <profile.local.docker.registry.name.prefix>reg.devharbor.com/test</profile.local.docker.registry.name.prefix>
 
         <!--dev 开发环境 (开发人员：本机开发+接口对接,完成单元白盒测试)-->
@@ -66,69 +73,98 @@
         <spring.cloud.config.uri.dev>http://190.168.1.29:13001</spring.cloud.config.uri.dev>
         <profile.dev.repositories.id>GCR</profile.dev.repositories.id>
         <profile.dev.repositories.name>GCR</profile.dev.repositories.name>
-        <profile.dev.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.dev.repositories.url>
+        <profile.dev.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/
+        </profile.dev.repositories.url>
         <profile.dev.pluginRepositories.id>GCR</profile.dev.pluginRepositories.id>
         <profile.dev.pluginRepositories.name>GCR</profile.dev.pluginRepositories.name>
-        <profile.dev.pluginRepositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.dev.pluginRepositories.url>
+        <profile.dev.pluginRepositories.url>http://192.168.1.5:8081/nexus/content/groups/public/
+        </profile.dev.pluginRepositories.url>
         <profile.dev.distributionManagement.release.id>releases</profile.dev.distributionManagement.release.id>
-        <profile.dev.distributionManagement.release.name>Nexus Release Repository</profile.dev.distributionManagement.release.name>
-        <profile.dev.distributionManagement.release.url>http://192.168.1.5:8081/nexus/content/repositories/releases/</profile.dev.distributionManagement.release.url>
+        <profile.dev.distributionManagement.release.name>Nexus Release Repository
+        </profile.dev.distributionManagement.release.name>
+        <profile.dev.distributionManagement.release.url>http://192.168.1.5:8081/nexus/content/repositories/releases/
+        </profile.dev.distributionManagement.release.url>
         <profile.dev.distributionManagement.snapshot.id>Snapshots</profile.dev.distributionManagement.snapshot.id>
-        <profile.dev.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.dev.distributionManagement.snapshot.name>
-        <profile.dev.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</profile.dev.distributionManagement.snapshot.url>
+        <profile.dev.distributionManagement.snapshot.name>Nexus Snapshot Repository
+        </profile.dev.distributionManagement.snapshot.name>
+        <profile.dev.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/
+        </profile.dev.distributionManagement.snapshot.url>
         <profile.dev.docker.registry.name.prefix>reg.devharbor.com/test</profile.dev.docker.registry.name.prefix>
 
         <!--老版本-测试环境-环境配置-->
         <spring.cloud.config.profile.test>test</spring.cloud.config.profile.test>
-        <spring.cloud.config.uri.test>http://gtp-config-dev-env-service.dev-env.svc.cluster.local:13001</spring.cloud.config.uri.test>
+        <spring.cloud.config.uri.test>http://gtp-config-dev-env-service.dev-env.svc.cluster.local:13001
+        </spring.cloud.config.uri.test>
         <profile.test.repositories.id>GCR</profile.test.repositories.id>
         <profile.test.repositories.name>GCR</profile.test.repositories.name>
-        <profile.test.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.test.repositories.url>
+        <profile.test.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/
+        </profile.test.repositories.url>
         <profile.test.pluginRepositories.id>GCR</profile.test.pluginRepositories.id>
         <profile.test.pluginRepositories.name>GCR</profile.test.pluginRepositories.name>
-        <profile.test.pluginRepositories.url>http://192.168.1.5:8081/nexus/content/groups/public/</profile.test.pluginRepositories.url>
+        <profile.test.pluginRepositories.url>http://192.168.1.5:8081/nexus/content/groups/public/
+        </profile.test.pluginRepositories.url>
         <profile.test.distributionManagement.release.id>nexus-releases</profile.test.distributionManagement.release.id>
-        <profile.test.distributionManagement.release.name>Nexus Release Repository</profile.test.distributionManagement.release.name>
-        <profile.test.distributionManagement.release.url>http://192.168.1.5:8081/nexus/content/repositories/releases/</profile.test.distributionManagement.release.url>
-        <profile.test.distributionManagement.snapshot.id>nexus-snapshot</profile.test.distributionManagement.snapshot.id>
-        <profile.test.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.test.distributionManagement.snapshot.name>
-        <profile.test.distributionManagement.snapshot.url>http://192.168.1.5:8081/nexus/content/repositories/Snapshots/</profile.test.distributionManagement.snapshot.url>
+        <profile.test.distributionManagement.release.name>Nexus Release Repository
+        </profile.test.distributionManagement.release.name>
+        <profile.test.distributionManagement.release.url>http://192.168.1.5:8081/nexus/content/repositories/releases/
+        </profile.test.distributionManagement.release.url>
+        <profile.test.distributionManagement.snapshot.id>nexus-snapshot
+        </profile.test.distributionManagement.snapshot.id>
+        <profile.test.distributionManagement.snapshot.name>Nexus Snapshot Repository
+        </profile.test.distributionManagement.snapshot.name>
+        <profile.test.distributionManagement.snapshot.url>
+            http://192.168.1.5:8081/nexus/content/repositories/Snapshots/
+        </profile.test.distributionManagement.snapshot.url>
         <profile.test.docker.registry.name.prefix>reg.devharbor.com/test</profile.test.docker.registry.name.prefix>
 
 
         <!--pre 预发布环境 (即准生产环境：完成功能、性能[Nginx流量拷贝、并发吞吐、、宕机压测]测试)-->
         <spring.cloud.config.profile.pre>pre</spring.cloud.config.profile.pre>
-        <spring.cloud.config.uri.pre>http://gtp-config-pre-env-service.pre-env.svc.cluster.local:13001</spring.cloud.config.uri.pre>
+        <spring.cloud.config.uri.pre>http://gtp-config-pre-env-service.pre-env.svc.cluster.local:13001
+        </spring.cloud.config.uri.pre>
         <profile.pre.repositories.id>GCR</profile.pre.repositories.id>
         <profile.pre.repositories.name>GCR</profile.pre.repositories.name>
         <profile.pre.repositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.pre.repositories.url>
         <profile.pre.pluginRepositories.id>GCR</profile.pre.pluginRepositories.id>
         <profile.pre.pluginRepositories.name>GCR</profile.pre.pluginRepositories.name>
-        <profile.pre.pluginRepositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.pre.pluginRepositories.url>
+        <profile.pre.pluginRepositories.url>http://172.16.3.10:8081/repository/maven-public/
+        </profile.pre.pluginRepositories.url>
         <profile.pre.distributionManagement.release.id>releases</profile.pre.distributionManagement.release.id>
-        <profile.pre.distributionManagement.release.name>Nexus Release Repository</profile.pre.distributionManagement.release.name>
-        <profile.pre.distributionManagement.release.url>http://172.16.3.10:8081/repository/maven-releases/</profile.pre.distributionManagement.release.url>
+        <profile.pre.distributionManagement.release.name>Nexus Release Repository
+        </profile.pre.distributionManagement.release.name>
+        <profile.pre.distributionManagement.release.url>http://172.16.3.10:8081/repository/maven-releases/
+        </profile.pre.distributionManagement.release.url>
         <profile.pre.distributionManagement.snapshot.id>Snapshots</profile.pre.distributionManagement.snapshot.id>
-        <profile.pre.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.pre.distributionManagement.snapshot.name>
-        <profile.pre.distributionManagement.snapshot.url>http://172.16.3.10:8081/repository/maven-snapshots/</profile.pre.distributionManagement.snapshot.url>
-        <profile.pre.docker.registry.name.prefix>registry.cn-hangzhou.aliyuncs.com/jvv-prod-hub</profile.pre.docker.registry.name.prefix>
+        <profile.pre.distributionManagement.snapshot.name>Nexus Snapshot Repository
+        </profile.pre.distributionManagement.snapshot.name>
+        <profile.pre.distributionManagement.snapshot.url>http://172.16.3.10:8081/repository/maven-snapshots/
+        </profile.pre.distributionManagement.snapshot.url>
+        <profile.pre.docker.registry.name.prefix>registry.cn-hangzhou.aliyuncs.com/jvv-prod-hub
+        </profile.pre.docker.registry.name.prefix>
 
         <!--prod 生产环境 (线上稳定版本)-->
         <spring.cloud.config.profile.prod>prod</spring.cloud.config.profile.prod>
-        <spring.cloud.config.uri.prod>http://gtp-config-prod-service.prod.svc.cluster.local:13001</spring.cloud.config.uri.prod>
+        <spring.cloud.config.uri.prod>http://gtp-config-prod-service.prod.svc.cluster.local:13001
+        </spring.cloud.config.uri.prod>
         <profile.prod.repositories.id>GCR</profile.prod.repositories.id>
         <profile.prod.repositories.name>GCR</profile.prod.repositories.name>
         <profile.prod.repositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.prod.repositories.url>
         <profile.prod.pluginRepositories.id>GCR</profile.prod.pluginRepositories.id>
         <profile.prod.pluginRepositories.name>GCR</profile.prod.pluginRepositories.name>
-        <profile.prod.pluginRepositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.prod.pluginRepositories.url>
+        <profile.prod.pluginRepositories.url>http://172.16.3.10:8081/repository/maven-public/
+        </profile.prod.pluginRepositories.url>
         <profile.prod.distributionManagement.release.id>releases</profile.prod.distributionManagement.release.id>
-        <profile.prod.distributionManagement.release.name>Nexus Release Repository</profile.prod.distributionManagement.release.name>
-        <profile.prod.distributionManagement.release.url>http://172.16.3.10:8081/repository/maven-releases/</profile.prod.distributionManagement.release.url>
+        <profile.prod.distributionManagement.release.name>Nexus Release Repository
+        </profile.prod.distributionManagement.release.name>
+        <profile.prod.distributionManagement.release.url>http://172.16.3.10:8081/repository/maven-releases/
+        </profile.prod.distributionManagement.release.url>
         <profile.prod.distributionManagement.snapshot.id>Snapshots</profile.prod.distributionManagement.snapshot.id>
-        <profile.prod.distributionManagement.snapshot.name>Nexus Snapshot Repository</profile.prod.distributionManagement.snapshot.name>
-        <profile.prod.distributionManagement.snapshot.url>http://172.16.3.10:8081/repository/maven-snapshots/</profile.prod.distributionManagement.snapshot.url>
-        <profile.prod.docker.registry.name.prefix>registry.cn-hangzhou.aliyuncs.com/jvv-prod-hub</profile.prod.docker.registry.name.prefix>
+        <profile.prod.distributionManagement.snapshot.name>Nexus Snapshot Repository
+        </profile.prod.distributionManagement.snapshot.name>
+        <profile.prod.distributionManagement.snapshot.url>http://172.16.3.10:8081/repository/maven-snapshots/
+        </profile.prod.distributionManagement.snapshot.url>
+        <profile.prod.docker.registry.name.prefix>registry.cn-hangzhou.aliyuncs.com/jvv-prod-hub
+        </profile.prod.docker.registry.name.prefix>
     </properties>
 
     <!--子类继承依赖组件-->
@@ -229,43 +265,45 @@
             </properties>
             <build>
                 <!-- 指定 docker环境相关编译信息-->
-                <plugins>
-                    <plugin>
-                        <groupId>com.spotify</groupId>
-                        <artifactId>dockerfile-maven-plugin</artifactId>
-                        <version>${dockerfile.maven.version}</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>javax.activation</groupId>
-                                <artifactId>activation</artifactId>
-                                <version>1.1.1</version>
-                            </dependency>
-                        </dependencies>
-                        <executions>
-                            <execution>
-                                <id>default</id>
-                                <goals>
-                                    <!-- 执行 build -->
-                                    <goal>build</goal>
-                                    <!-- 执行 push -->
-                                    <!--<goal>push</goal>-->
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <!-- 镜像名称 -->
-                            <repository>${profile.dev.docker.registry.name.prefix}/${project.name}</repository>
-                            <!-- 镜像版本 -->
-                            <tag>${project.version}</tag>
-                            <!--<username>xxx</username>-->
-                            <!--<password>xxx</password>-->
-                            <buildArgs>
-                                <!-- jar 包名称 -->
-                                <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                            </buildArgs>
-                        </configuration>
-                    </plugin>
-                </plugins>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.spotify</groupId>
+                            <artifactId>dockerfile-maven-plugin</artifactId>
+                            <version>${dockerfile.maven.version}</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>javax.activation</groupId>
+                                    <artifactId>activation</artifactId>
+                                    <version>1.1.1</version>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <id>default</id>
+                                    <goals>
+                                        <!-- 执行 build -->
+                                        <goal>build</goal>
+                                        <!-- 执行 push -->
+                                        <!--<goal>push</goal>-->
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <!-- 镜像名称 -->
+                                <repository>${profile.dev.docker.registry.name.prefix}/${project.name}</repository>
+                                <!-- 镜像版本 -->
+                                <tag>${project.version}</tag>
+                                <!--<username>xxx</username>-->
+                                <!--<password>xxx</password>-->
+                                <buildArgs>
+                                    <!-- jar 包名称 -->
+                                    <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                                </buildArgs>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
             </build>
             <repositories>
                 <repository>
@@ -322,44 +360,46 @@
                 <spring.cloud.config.profile>${spring.cloud.config.profile.local}</spring.cloud.config.profile>
             </properties>
             <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.spotify</groupId>
+                            <artifactId>dockerfile-maven-plugin</artifactId>
+                            <version>${dockerfile.maven.version}</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>javax.activation</groupId>
+                                    <artifactId>activation</artifactId>
+                                    <version>1.1.1</version>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <id>default</id>
+                                    <goals>
+                                        <!-- 执行 build -->
+                                        <goal>build</goal>
+                                        <!-- 执行 push -->
+                                        <!--<goal>push</goal>-->
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <!-- 镜像名称 -->
+                                <repository>${profile.local.docker.registry.name.prefix}/${project.name}</repository>
+                                <!-- 镜像版本 -->
+                                <tag>${project.version}</tag>
+                                <!--<username>xxx</username>-->
+                                <!--<password>xxx</password>-->
+                                <buildArgs>
+                                    <!-- jar 包名称 -->
+                                    <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                                </buildArgs>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
                 <!-- 指定 docker环境相关编译信息-->
-                <plugins>
-                    <plugin>
-                        <groupId>com.spotify</groupId>
-                        <artifactId>dockerfile-maven-plugin</artifactId>
-                        <version>${dockerfile.maven.version}</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>javax.activation</groupId>
-                                <artifactId>activation</artifactId>
-                                <version>1.1.1</version>
-                            </dependency>
-                        </dependencies>
-                        <executions>
-                            <execution>
-                                <id>default</id>
-                                <goals>
-                                    <!-- 执行 build -->
-                                    <goal>build</goal>
-                                    <!-- 执行 push -->
-                                    <!--<goal>push</goal>-->
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <!-- 镜像名称 -->
-                            <repository>${profile.local.docker.registry.name.prefix}/${project.name}</repository>
-                            <!-- 镜像版本 -->
-                            <tag>${project.version}</tag>
-                            <!--<username>xxx</username>-->
-                            <!--<password>xxx</password>-->
-                            <buildArgs>
-                                <!-- jar 包名称 -->
-                                <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                            </buildArgs>
-                        </configuration>
-                    </plugin>
-                </plugins>
             </build>
             <repositories>
                 <repository>
@@ -416,44 +456,46 @@
                 <spring.cloud.config.profile>${spring.cloud.config.profile.test}</spring.cloud.config.profile>
             </properties>
             <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.spotify</groupId>
+                            <artifactId>dockerfile-maven-plugin</artifactId>
+                            <version>${dockerfile.maven.version}</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>javax.activation</groupId>
+                                    <artifactId>activation</artifactId>
+                                    <version>1.1.1</version>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <id>default</id>
+                                    <goals>
+                                        <!-- 执行 build -->
+                                        <goal>build</goal>
+                                        <!-- 执行 push -->
+                                        <!--<goal>push</goal>-->
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <!-- 镜像名称 -->
+                                <repository>${profile.test.docker.registry.name.prefix}/${project.name}</repository>
+                                <!-- 镜像版本 -->
+                                <tag>${project.version}</tag>
+                                <!--<username>xxx</username>-->
+                                <!--<password>xxx</password>-->
+                                <buildArgs>
+                                    <!-- jar 包名称 -->
+                                    <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                                </buildArgs>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
                 <!-- 指定 docker环境相关编译信息-->
-                <plugins>
-                    <plugin>
-                        <groupId>com.spotify</groupId>
-                        <artifactId>dockerfile-maven-plugin</artifactId>
-                        <version>${dockerfile.maven.version}</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>javax.activation</groupId>
-                                <artifactId>activation</artifactId>
-                                <version>1.1.1</version>
-                            </dependency>
-                        </dependencies>
-                        <executions>
-                            <execution>
-                                <id>default</id>
-                                <goals>
-                                    <!-- 执行 build -->
-                                    <goal>build</goal>
-                                    <!-- 执行 push -->
-                                    <!--<goal>push</goal>-->
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <!-- 镜像名称 -->
-                            <repository>${profile.test.docker.registry.name.prefix}/${project.name}</repository>
-                            <!-- 镜像版本 -->
-                            <tag>${project.version}</tag>
-                            <!--<username>xxx</username>-->
-                            <!--<password>xxx</password>-->
-                            <buildArgs>
-                                <!-- jar 包名称 -->
-                                <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                            </buildArgs>
-                        </configuration>
-                    </plugin>
-                </plugins>
             </build>
             <repositories>
                 <repository>
@@ -510,44 +552,46 @@
                 <spring.cloud.config.profile>${spring.cloud.config.profile.pre}</spring.cloud.config.profile>
             </properties>
             <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.spotify</groupId>
+                            <artifactId>dockerfile-maven-plugin</artifactId>
+                            <version>${dockerfile.maven.version}</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>javax.activation</groupId>
+                                    <artifactId>activation</artifactId>
+                                    <version>1.1.1</version>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <id>default</id>
+                                    <goals>
+                                        <!-- 执行 build -->
+                                        <goal>build</goal>
+                                        <!-- 执行 push -->
+                                        <!--<goal>push</goal>-->
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <!-- 镜像名称 -->
+                                <repository>${profile.pre.docker.registry.name.prefix}/${project.name}</repository>
+                                <!-- 镜像版本 -->
+                                <tag>${project.version}</tag>
+                                <!--<username>xxx</username>-->
+                                <!--<password>xxx</password>-->
+                                <buildArgs>
+                                    <!-- jar 包名称 -->
+                                    <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                                </buildArgs>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
                 <!-- 指定 docker环境相关编译信息-->
-                <plugins>
-                    <plugin>
-                        <groupId>com.spotify</groupId>
-                        <artifactId>dockerfile-maven-plugin</artifactId>
-                        <version>${dockerfile.maven.version}</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>javax.activation</groupId>
-                                <artifactId>activation</artifactId>
-                                <version>1.1.1</version>
-                            </dependency>
-                        </dependencies>
-                        <executions>
-                            <execution>
-                                <id>default</id>
-                                <goals>
-                                    <!-- 执行 build -->
-                                    <goal>build</goal>
-                                    <!-- 执行 push -->
-                                    <!--<goal>push</goal>-->
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <!-- 镜像名称 -->
-                            <repository>${profile.pre.docker.registry.name.prefix}/${project.name}</repository>
-                            <!-- 镜像版本 -->
-                            <tag>${project.version}</tag>
-                            <!--<username>xxx</username>-->
-                            <!--<password>xxx</password>-->
-                            <buildArgs>
-                                <!-- jar 包名称 -->
-                                <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                            </buildArgs>
-                        </configuration>
-                    </plugin>
-                </plugins>
             </build>
             <repositories>
                 <repository>
@@ -604,44 +648,46 @@
                 <spring.cloud.config.profile>${spring.cloud.config.profile.prod}</spring.cloud.config.profile>
             </properties>
             <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.spotify</groupId>
+                            <artifactId>dockerfile-maven-plugin</artifactId>
+                            <version>${dockerfile.maven.version}</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>javax.activation</groupId>
+                                    <artifactId>activation</artifactId>
+                                    <version>1.1.1</version>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <id>default</id>
+                                    <goals>
+                                        <!-- 执行 build -->
+                                        <goal>build</goal>
+                                        <!-- 执行 push -->
+                                        <!--<goal>push</goal>-->
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <!-- 镜像名称 -->
+                                <repository>${profile.prod.docker.registry.name.prefix}/${project.name}</repository>
+                                <!-- 镜像版本 -->
+                                <tag>${project.version}</tag>
+                                <!--<username>xxx</username>-->
+                                <!--<password>xxx</password>-->
+                                <buildArgs>
+                                    <!-- jar 包名称 -->
+                                    <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                                </buildArgs>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
                 <!-- 指定 docker环境相关编译信息-->
-                <plugins>
-                    <plugin>
-                        <groupId>com.spotify</groupId>
-                        <artifactId>dockerfile-maven-plugin</artifactId>
-                        <version>${dockerfile.maven.version}</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>javax.activation</groupId>
-                                <artifactId>activation</artifactId>
-                                <version>1.1.1</version>
-                            </dependency>
-                        </dependencies>
-                        <executions>
-                            <execution>
-                                <id>default</id>
-                                <goals>
-                                    <!-- 执行 build -->
-                                    <goal>build</goal>
-                                    <!-- 执行 push -->
-                                    <!--<goal>push</goal>-->
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <!-- 镜像名称 -->
-                            <repository>${profile.prod.docker.registry.name.prefix}/${project.name}</repository>
-                            <!-- 镜像版本 -->
-                            <tag>${project.version}</tag>
-                            <!--<username>xxx</username>-->
-                            <!--<password>xxx</password>-->
-                            <buildArgs>
-                                <!-- jar 包名称 -->
-                                <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                            </buildArgs>
-                        </configuration>
-                    </plugin>
-                </plugins>
             </build>
             <repositories>
                 <repository>
