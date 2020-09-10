@@ -47,6 +47,7 @@
         <!--老版本-开发人员-CloudConfig环境配置-->
         <spring.cloud.config.profile.local>local</spring.cloud.config.profile.local>
         <spring.cloud.config.uri.local>http://190.168.1.29:13001</spring.cloud.config.uri.local>
+        <spring.cloud.registry.uri.local>http://190.168.1.29:11001/eureka/</spring.cloud.registry.uri.local>
         <profile.local.repositories.id>GCR</profile.local.repositories.id>
         <profile.local.repositories.name>GCR</profile.local.repositories.name>
         <profile.local.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/
@@ -71,6 +72,7 @@
         <!--dev 开发环境 (开发人员：本机开发+接口对接,完成单元白盒测试)-->
         <spring.cloud.config.profile.dev>dev</spring.cloud.config.profile.dev>
         <spring.cloud.config.uri.dev>http://190.168.1.29:13001</spring.cloud.config.uri.dev>
+        <spring.cloud.registry.uri.dev>http://190.168.1.29:11001/eureka/</spring.cloud.registry.uri.dev>
         <profile.dev.repositories.id>GCR</profile.dev.repositories.id>
         <profile.dev.repositories.name>GCR</profile.dev.repositories.name>
         <profile.dev.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/
@@ -95,6 +97,8 @@
         <spring.cloud.config.profile.test>test</spring.cloud.config.profile.test>
         <spring.cloud.config.uri.test>http://gtp-config-dev-env-service.dev-env.svc.cluster.local:13001
         </spring.cloud.config.uri.test>
+        <spring.cloud.registry.uri.test>http://gtp-discovery-dev-env-service.dev-env.svc.cluster.local:11001/eureka/
+        </spring.cloud.registry.uri.test>
         <profile.test.repositories.id>GCR</profile.test.repositories.id>
         <profile.test.repositories.name>GCR</profile.test.repositories.name>
         <profile.test.repositories.url>http://192.168.1.5:8081/nexus/content/groups/public/
@@ -122,6 +126,8 @@
         <spring.cloud.config.profile.pre>pre</spring.cloud.config.profile.pre>
         <spring.cloud.config.uri.pre>http://gtp-config-pre-env-service.pre-env.svc.cluster.local:13001
         </spring.cloud.config.uri.pre>
+        <spring.cloud.registry.uri.pre>http://gtp-discovery-pre-env-service.pre-env.svc.cluster.local:11001/eureka/
+        </spring.cloud.registry.uri.pre>
         <profile.pre.repositories.id>GCR</profile.pre.repositories.id>
         <profile.pre.repositories.name>GCR</profile.pre.repositories.name>
         <profile.pre.repositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.pre.repositories.url>
@@ -146,6 +152,8 @@
         <spring.cloud.config.profile.prod>prod</spring.cloud.config.profile.prod>
         <spring.cloud.config.uri.prod>http://gtp-config-prod-service.prod.svc.cluster.local:13001
         </spring.cloud.config.uri.prod>
+        <spring.cloud.registry.uri.prod>http://gtp-discovery-prod-service.prod.svc.cluster.local:11001/eureka/
+        </spring.cloud.registry.uri.prod>
         <profile.prod.repositories.id>GCR</profile.prod.repositories.id>
         <profile.prod.repositories.name>GCR</profile.prod.repositories.name>
         <profile.prod.repositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.prod.repositories.url>
@@ -262,6 +270,7 @@
             <properties>
                 <spring.cloud.config.uri>${spring.cloud.config.uri.dev}</spring.cloud.config.uri>
                 <spring.cloud.config.profile>${spring.cloud.config.profile.dev}</spring.cloud.config.profile>
+                <spring.cloud.registry.uri>${spring.cloud.registry.uri.dev}</spring.cloud.registry.uri>
             </properties>
             <build>
                 <!-- 指定 docker环境相关编译信息-->
@@ -358,6 +367,7 @@
             <properties>
                 <spring.cloud.config.uri>${spring.cloud.config.uri.local}</spring.cloud.config.uri>
                 <spring.cloud.config.profile>${spring.cloud.config.profile.local}</spring.cloud.config.profile>
+                <spring.cloud.registry.uri>${spring.cloud.registry.uri.local}</spring.cloud.registry.uri>
             </properties>
             <build>
                 <pluginManagement>
@@ -454,6 +464,7 @@
             <properties>
                 <spring.cloud.config.uri>${spring.cloud.config.uri.test}</spring.cloud.config.uri>
                 <spring.cloud.config.profile>${spring.cloud.config.profile.test}</spring.cloud.config.profile>
+                <spring.cloud.registry.uri>${spring.cloud.registry.uri.test}</spring.cloud.registry.uri>
             </properties>
             <build>
                 <pluginManagement>
@@ -550,6 +561,7 @@
             <properties>
                 <spring.cloud.config.uri>${spring.cloud.config.uri.pre}</spring.cloud.config.uri>
                 <spring.cloud.config.profile>${spring.cloud.config.profile.pre}</spring.cloud.config.profile>
+                <spring.cloud.registry.uri>${spring.cloud.registry.uri.pre}</spring.cloud.registry.uri>
             </properties>
             <build>
                 <pluginManagement>
@@ -646,6 +658,7 @@
             <properties>
                 <spring.cloud.config.uri>${spring.cloud.config.uri.prod}</spring.cloud.config.uri>
                 <spring.cloud.config.profile>${spring.cloud.config.profile.prod}</spring.cloud.config.profile>
+                <spring.cloud.registry.uri>${spring.cloud.registry.uri.prod}</spring.cloud.registry.uri>
             </properties>
             <build>
                 <pluginManagement>
