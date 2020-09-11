@@ -130,20 +130,20 @@
         </spring.cloud.registry.uri.pre>
         <profile.pre.repositories.id>GCR</profile.pre.repositories.id>
         <profile.pre.repositories.name>GCR</profile.pre.repositories.name>
-        <profile.pre.repositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.pre.repositories.url>
+        <profile.pre.repositories.url>http://47.98.36.173:8081/repository/maven-public/</profile.pre.repositories.url>
         <profile.pre.pluginRepositories.id>GCR</profile.pre.pluginRepositories.id>
         <profile.pre.pluginRepositories.name>GCR</profile.pre.pluginRepositories.name>
-        <profile.pre.pluginRepositories.url>http://172.16.3.10:8081/repository/maven-public/
+        <profile.pre.pluginRepositories.url>http://47.98.36.173:8081/repository/maven-public/
         </profile.pre.pluginRepositories.url>
         <profile.pre.distributionManagement.release.id>releases</profile.pre.distributionManagement.release.id>
         <profile.pre.distributionManagement.release.name>Nexus Release Repository
         </profile.pre.distributionManagement.release.name>
-        <profile.pre.distributionManagement.release.url>http://172.16.3.10:8081/repository/maven-releases/
+        <profile.pre.distributionManagement.release.url>http://47.98.36.173:8081/repository/maven-releases/
         </profile.pre.distributionManagement.release.url>
         <profile.pre.distributionManagement.snapshot.id>Snapshots</profile.pre.distributionManagement.snapshot.id>
         <profile.pre.distributionManagement.snapshot.name>Nexus Snapshot Repository
         </profile.pre.distributionManagement.snapshot.name>
-        <profile.pre.distributionManagement.snapshot.url>http://172.16.3.10:8081/repository/maven-snapshots/
+        <profile.pre.distributionManagement.snapshot.url>http://47.98.36.173:8081/repository/maven-snapshots/
         </profile.pre.distributionManagement.snapshot.url>
         <profile.pre.docker.registry.name.prefix>registry.cn-hangzhou.aliyuncs.com/jvv-prod-hub
         </profile.pre.docker.registry.name.prefix>
@@ -156,20 +156,20 @@
         </spring.cloud.registry.uri.prod>
         <profile.prod.repositories.id>GCR</profile.prod.repositories.id>
         <profile.prod.repositories.name>GCR</profile.prod.repositories.name>
-        <profile.prod.repositories.url>http://172.16.3.10:8081/repository/maven-public/</profile.prod.repositories.url>
+        <profile.prod.repositories.url>http://47.98.36.173:8081/repository/maven-public/</profile.prod.repositories.url>
         <profile.prod.pluginRepositories.id>GCR</profile.prod.pluginRepositories.id>
         <profile.prod.pluginRepositories.name>GCR</profile.prod.pluginRepositories.name>
-        <profile.prod.pluginRepositories.url>http://172.16.3.10:8081/repository/maven-public/
+        <profile.prod.pluginRepositories.url>http://47.98.36.173:8081/repository/maven-public/
         </profile.prod.pluginRepositories.url>
         <profile.prod.distributionManagement.release.id>releases</profile.prod.distributionManagement.release.id>
         <profile.prod.distributionManagement.release.name>Nexus Release Repository
         </profile.prod.distributionManagement.release.name>
-        <profile.prod.distributionManagement.release.url>http://172.16.3.10:8081/repository/maven-releases/
+        <profile.prod.distributionManagement.release.url>http://47.98.36.173:8081/repository/maven-releases/
         </profile.prod.distributionManagement.release.url>
         <profile.prod.distributionManagement.snapshot.id>Snapshots</profile.prod.distributionManagement.snapshot.id>
         <profile.prod.distributionManagement.snapshot.name>Nexus Snapshot Repository
         </profile.prod.distributionManagement.snapshot.name>
-        <profile.prod.distributionManagement.snapshot.url>http://172.16.3.10:8081/repository/maven-snapshots/
+        <profile.prod.distributionManagement.snapshot.url>http://47.98.36.173:8081/repository/maven-snapshots/
         </profile.prod.distributionManagement.snapshot.url>
         <profile.prod.docker.registry.name.prefix>registry.cn-hangzhou.aliyuncs.com/jvv-prod-hub
         </profile.prod.docker.registry.name.prefix>
