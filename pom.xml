@@ -259,6 +259,74 @@
         </dependencies>
     </dependencyManagement>
 
+    <!--私有仓库地址（解决子项目无法找到 profile 中 repository ，
+    导致parent 查找失败。profile 中取消配置仓库，只需要配置上传仓库信息）-->
+    <repositories>
+        <repository>
+            <id>develop</id>
+            <name>develop</name>
+            <url>${profile.dev.repositories.url}</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>release</id>
+            <name>release</name>
+            <url>${profile.prod.repositories.url}</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+    <!--同私有仓库地址 配置信息说明-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>develop</id>
+            <name>develop</name>
+            <url>${profile.dev.pluginRepositories.url}</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>release</id>
+            <name>release</name>
+            <url>${profile.prod.pluginRepositories.url}</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
     <!--编译 环境配置 (用于编译过程中，替换项目运行配置文件中，指定的参数)-->
     <profiles>
         <profile>
@@ -314,40 +382,6 @@
                     </plugins>
                 </pluginManagement>
             </build>
-            <repositories>
-                <repository>
-                    <id>${profile.dev.repositories.id}</id>
-                    <name>${profile.dev.repositories.name}</name>
-                    <url>${profile.dev.repositories.url}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </snapshots>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>${profile.dev.pluginRepositories.id}</id>
-                    <name>${profile.dev.pluginRepositories.name}</name>
-                    <url>${profile.dev.pluginRepositories.url}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
             <distributionManagement>
                 <repository>
                     <id>${profile.dev.distributionManagement.release.id}</id>
@@ -411,40 +445,6 @@
                 </pluginManagement>
                 <!-- 指定 docker环境相关编译信息-->
             </build>
-            <repositories>
-                <repository>
-                    <id>${profile.local.repositories.id}</id>
-                    <name>${profile.local.repositories.name}</name>
-                    <url>${profile.local.repositories.url}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </snapshots>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>${profile.local.pluginRepositories.id}</id>
-                    <name>${profile.local.pluginRepositories.name}</name>
-                    <url>${profile.local.pluginRepositories.url}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
             <distributionManagement>
                 <repository>
                     <id>${profile.local.distributionManagement.release.id}</id>
@@ -508,40 +508,6 @@
                 </pluginManagement>
                 <!-- 指定 docker环境相关编译信息-->
             </build>
-            <repositories>
-                <repository>
-                    <id>${profile.test.repositories.id}</id>
-                    <name>${profile.test.repositories.name}</name>
-                    <url>${profile.test.repositories.url}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </snapshots>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>${profile.test.pluginRepositories.id}</id>
-                    <name>${profile.test.pluginRepositories.name}</name>
-                    <url>${profile.test.pluginRepositories.url}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
             <distributionManagement>
                 <repository>
                     <id>${profile.test.distributionManagement.release.id}</id>
@@ -605,40 +571,6 @@
                 </pluginManagement>
                 <!-- 指定 docker环境相关编译信息-->
             </build>
-            <repositories>
-                <repository>
-                    <id>${profile.pre.repositories.id}</id>
-                    <name>${profile.pre.repositories.name}</name>
-                    <url>${profile.pre.repositories.url}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </snapshots>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>${profile.pre.pluginRepositories.id}</id>
-                    <name>${profile.pre.pluginRepositories.name}</name>
-                    <url>${profile.pre.pluginRepositories.url}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
             <distributionManagement>
                 <repository>
                     <id>${profile.pre.distributionManagement.release.id}</id>
@@ -702,40 +634,6 @@
                 </pluginManagement>
                 <!-- 指定 docker环境相关编译信息-->
             </build>
-            <repositories>
-                <repository>
-                    <id>${profile.prod.repositories.id}</id>
-                    <name>${profile.prod.repositories.name}</name>
-                    <url>${profile.prod.repositories.url}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </snapshots>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>${profile.prod.pluginRepositories.id}</id>
-                    <name>${profile.prod.pluginRepositories.name}</name>
-                    <url>${profile.prod.pluginRepositories.url}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
             <distributionManagement>
                 <repository>
                     <id>${profile.prod.distributionManagement.release.id}</id>
