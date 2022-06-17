@@ -34,7 +34,7 @@
         <org.databene.contiperf.version>2.1.0</org.databene.contiperf.version>
         <!--JMH Microbenchmark 基准并发压力测试-->
         <org.openjdk.jmh.jmh-core.version>1.21</org.openjdk.jmh.jmh-core.version>
-        <fastjson.version>1.2.70</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
 
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>${project.reporting.outputEncoding}</project.build.sourceEncoding>
